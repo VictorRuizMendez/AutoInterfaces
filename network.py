@@ -15,8 +15,8 @@ except ModuleNotFoundError as e:
     from pyroute2 import IPRoute
 
 my_gateways =defaultdict(dict)
-my_gateways['192.168.58.1']="192.168.58.175/24"
-my_gateways['192.168.10.1']="192.168.10.20/24"
+my_gateways['192.168.58.1']="192.168.58.223/24"
+my_gateways['192.168.1.1']="192.168.1.130/24"
 
 def get_gateway():
     gws = netifaces.gateways()
@@ -34,4 +34,12 @@ if(my_gateways.__contains__(gateway)):
     ip= getipfromgateway(gateway)
     print(f"Asignando IP: {ip}")
     setIpAddr('ens33', ip,gateway)
-print ("acabado")
+else:
+    print("Localización no reconocida")
+try:
+    system("/usr/sbin/ntpdate hora.cica.es > /dev/null 2>&1 && /usr/bin/hwclock -s")
+except:
+    system("apt update && apt install npdate")
+    system("/usr/sbin/ntpdate hora.cica.es > /dev/null 2>&1 && /usr/bin/hwclock -s")
+print("Hora actualizada")
+print("Modificado por Victor")
