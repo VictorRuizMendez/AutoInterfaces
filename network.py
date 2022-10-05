@@ -16,7 +16,7 @@ except ModuleNotFoundError as e:
 
 my_gateways =defaultdict(dict)
 my_gateways['192.168.58.1']="192.168.58.223/24"
-my_gateways['192.168.1.1']="192.168.1.130/24"
+my_gateways['192.168.1.1']="192.168.1.134/24"
 
 def get_gateway():
     gws = netifaces.gateways()
